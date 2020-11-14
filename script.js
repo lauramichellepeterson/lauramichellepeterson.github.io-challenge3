@@ -4,6 +4,7 @@ var useLower = false;
 var useUpper = false;
 var useNumber = false;
 var useSpecial = false;
+var userReply = "";
 
 
 var getCharacterTotal = function() {
@@ -13,9 +14,31 @@ var getCharacterTotal = function() {
   }
 }
 
+var userReplyIsValid = function() {
+  // userReply = userReply.toLowerCase;
+  console.log("user reply: " + userReply);
+  if (userReply.toLowerCase() === "y" || userReply.toLowerCase() === "n") {
+    console.log("user reply is valid");
+    return true;
+  } else {
+    console.log("user reply NOT valid");
+    return false;
+  }
+}
+
+var getUseLower = function() {
+  // userReply = "";
+  userReply = window.prompt("Would you like to use lowercase letters? (y/n)");
+  if (userReplyIsValid() === false) {
+    getUseLower();
+  } else {
+    // set useLower to true or false
+  }
+}
+
 var getUserInputs = function() {
   getCharacterTotal();
-
+  getUseLower();
 }
 
 // Get references to the #generate element
