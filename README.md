@@ -1,4 +1,7 @@
 # lauramichellepeterson.github.io-challenge3
+https://lauramichellepeterson.github.io/lauramichellepeterson.github.io-challenge3/
+
+# Description
 Password Generator
 
 # GitHub
