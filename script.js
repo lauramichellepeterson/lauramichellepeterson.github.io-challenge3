@@ -90,9 +90,30 @@ var getUseSpecial = function() {
   }
 }
 
+var useCurrentSettings = function() {
+  if (characterTotal>=8 && characterTotal<=128) {
+    userReply = window.prompt("Do you want to use the current settings to generates a password? (y/n) \nCharacters: " + characterTotal + "\nLowercase: " + useLower + "\nUppercase: " + useUpper + "\nNumbers: " + useNumber + "\nSpecial: " + useSpecial);
+    if (userReplyIsValid() === false) {
+      useCurrentSettings();
+    }
+  }
+} 
+
+var resetSettings = function() {
+  characterTotal = 0;
+  useLower = false;
+  useUpper = false;
+  useNumber = false;
+  useSpecial = false;
+  userReply = "";
+}
+
 //get user input and make sure all inputs are valid and alert user of conditions
 var getUserInputs = function() {
-  getCharacterTotal();
+  useCurrentSettings();
+  if ((userReplyIsValid() === true && userReply === "n") || userReply === "") {
+    resetSettings();
+    getCharacterTotal();
     while (useLower === false && useUpper === false && useNumber === false && useSpecial === false) {
       getUseLower();
       getUseUpper();
@@ -102,11 +123,12 @@ var getUserInputs = function() {
         window.alert("Password must include at least one of the following character types: lowercase, uppercase, number, special character. Please make your selections again.")
       }  
     }
+  }   
 }
 
 //Generate password based on user selections
 var generatePassword = function() {
-  window.alert("Create password with the following selections:\nCharacters: " + characterTotal + "\nLowercase: " + useLower + "\nUppercase: " + useUpper + "\nNumbers: " + useNumber + "\nSpecial: " + useSpecial);
+  // window.alert("Create password with the following selections:\nCharacters: " + characterTotal + "\nLowercase: " + useLower + "\nUppercase: " + useUpper + "\nNumbers: " + useNumber + "\nSpecial: " + useSpecial);
 
   var lowerCaseCharacters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
   var upperCaseCharacters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
